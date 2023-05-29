@@ -33,6 +33,9 @@ new p5(function (p5) {
         ], 5, true);
         mario.scale = 0.45;
         mario.debug = true;
+        // top, bottom, left, right
+        mario.editCollider(15, 0, 20, 20, "default");
+        mario.addCollider("tail", mario.height * 2, 0, -30, mario.width * 2);
         //mario.vx = 3;
 
         //p5.frameRate(15);
@@ -56,6 +59,7 @@ new p5(function (p5) {
         //var wall2 = new Sprite(0, 0, 50, 400);
         //wall2.debug = true;
         //wall2.changeCollisonType("static");
+        
     }
 
     p5.draw = function () {
@@ -67,13 +71,18 @@ new p5(function (p5) {
 
         if (p5.keyIsDown(p5.RIGHT_ARROW)) {
             mario.vx = 3;
+            mario.flipX = false;
         } else if (p5.keyIsDown(p5.LEFT_ARROW)) {
+            mario.flipX = true;
             mario.vx = -3;
         } else {
             mario.vx = 0;
         }
-        
-        if (p5.keyIsDown(p5.UP_ARROW) && mario.isColliding(ground)) {
+        // isColliding is a function that returns true if the sprite is colliding with another sprite
+        // it takes in a sprite as a parameter as well as collider name fro sprite
+        // which is optional and defaults to "default"
+        // also takes in collider name for other sprite, which is optional and defaults to "default"
+        if (p5.keyIsDown(p5.UP_ARROW) && mario.isColliding(ground, "default", "default")) {
             mario.vy = -5;
         }
 
