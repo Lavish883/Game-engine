@@ -1,4 +1,5 @@
 import { Sprite } from "./lib/sprites/sprite.js";
+import { Group } from "./lib/groups/groups.js";
 import Controller from "./lib/index.js";
 
 // first have to make new instance of the Lavish library
@@ -19,8 +20,8 @@ new p5(function (p5) {
         window.p5 = p5;
         lavishController = new Controller();
         window.lavishController = lavishController;
-        // for a sprite
-        mario = new Sprite(0, 0, 50, 50);
+        // for a sprit
+        mario = new Sprite(150, 0, 50, 50);
         window.mario = mario;
         mario.addAnimation("walk", [
             "/testAssets/sprite_0.png",
@@ -36,11 +37,12 @@ new p5(function (p5) {
         // top, bottom, left, right
         mario.editCollider(15, 0, 20, 20, "default");
         mario.addCollider("tail", mario.height * 2, 0, -30, mario.width * 2);
-        //mario.vx = 3;
+        
 
-        //p5.frameRate(15);
+        var room = new Group('room');
+
         // ground sprite
-         ground = new Sprite(0, 350, 400, 50);
+        ground = room.Sprite(0, 350, 400, 50, 'ground');
         ground.debug = true;
         // collison types - static, kinematic, none
         ground.changeCollisonType("static");
@@ -51,14 +53,14 @@ new p5(function (p5) {
         })
         */
         // wall sprite
-        var wall = new Sprite(300, 0, 50, 400);
-        wall.debug = true;
-        wall.changeCollisonType("static");
+        var wall1 = room.Sprite(300, 0, 50, 400, 'wall1');
+        wall1.debug = true;
+        wall1.changeCollisonType("static");
 
-        // wall sprite
-        //var wall2 = new Sprite(0, 0, 50, 400);
-        //wall2.debug = true;
-        //wall2.changeCollisonType("static");
+        //room.removeSprite("wall1");
+        //p5.frameRate(10);
+        
+
         
     }
 
