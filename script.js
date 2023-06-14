@@ -121,7 +121,7 @@ new p5(function (p5) {
 
 //        p5.translate(settings.width / 2 - redHood.x, 0);
 
-        cameraSystem.cameraFollow(redHood);
+        cameraSystem.cameraFollowDirections([{'x': 150, 'y': 250}, {'x': -150, 'y': 0}, {'x': 0, 'y': 0}, {'x': 0, 'y': 0}]);
 
 
         group2.update();
